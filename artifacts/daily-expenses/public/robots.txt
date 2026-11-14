@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://daily-rand-tracker--zungum664.replit.app/sitemap.xml
