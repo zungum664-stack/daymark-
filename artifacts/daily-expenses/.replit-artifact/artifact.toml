@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Daily Expenses"
+description = "A simple, mobile-friendly daily expense tracker for recording purchases in South African Rand and seeing the day's total at a glance."
+version = "1.0.0"
+id = "artifacts/daily-expenses"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24273
+
+[services.development]
+run = "pnpm --filter @workspace/daily-expenses run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/daily-expenses", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/daily-expenses/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24273"
+BASE_PATH = "/"
