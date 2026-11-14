@@ -5,6 +5,14 @@ import { ErrorBoundary } from '@/components/error-boundary';
 
 import './index.css';
 
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').catch((error: unknown) => {
+      console.error('Daymark service worker registration failed:', error);
+    });
+  });
+}
+
 createRoot(document.getElementById('root')!, {
   // Keeps caught errors off reportError(), which would raise the dev overlay.
   onCaughtError: (error, errorInfo) => {
