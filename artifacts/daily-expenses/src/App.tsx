@@ -113,7 +113,7 @@ function App() {
       <div className="content-wrap">
         <section className="intro" aria-labelledby="page-title">
           <div className="eyebrow"><span className="eyebrow-line" /> YOUR DAILY MONEY NOTE</div>
-          <h1 id="page-title">Daily Rand<br /><em>Tracker</em></h1>
+          <h1 id="page-title">Daymark<br /><em>Daily Rand Tracker</em></h1>
           <p className="intro-copy">Keep a gentle eye on where today goes.<br className="desktop-break" /> No budgets, no fuss — just your day, accounted for.</p>
         </section>
 
