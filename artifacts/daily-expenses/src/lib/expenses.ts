@@ -19,12 +19,28 @@ export function localDateKey(date: Date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
 
-export function formatRand(amount: number) {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 2,
-  }).format(amount);
+export const CURRENCY_KEY = "daymark_currency_v1";
+export const CURRENCIES = [
+  { code: "ZAR", symbol: "R", locale: "en-ZA", label: "ZAR (R)" },
+  { code: "USD", symbol: "$", locale: "en-US", label: "USD ($)" },
+  { code: "EUR", symbol: "€", locale: "de-DE", label: "EUR (€)" },
+  { code: "GBP", symbol: "£", locale: "en-GB", label: "GBP (£)" },
+  { code: "KES", symbol: "KSh", locale: "en-KE", label: "KES (KSh)" },
+  { code: "NGN", symbol: "₦", locale: "en-NG", label: "NGN (₦)" },
+  { code: "BWP", symbol: "P", locale: "en-BW", label: "BWP (P)" },
+  { code: "NAD", symbol: "N$", locale: "en-NA", label: "NAD (N$)" },
+  { code: "INR", symbol: "₹", locale: "en-IN", label: "INR (₹)" },
+] as const;
+export function getCurrency() {
+  try {
+    const code = localStorage.getItem(CURRENCY_KEY);
+    return CURRENCIES.find((c) => c.code === code) || CURRENCIES[0];
+  } catch { return CURRENCIES[0]; }
+}
+export function formatRand(amount: number): string {
+  const c = getCurrency();
+  const formatted = new Intl.NumberFormat(c.locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(amount);
+  return `${c.symbol} ${formatted}`;
 }
 
 export function formatDate(dateKey: string, options: Intl.DateTimeFormatOptions = {
