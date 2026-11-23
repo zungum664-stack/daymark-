@@ -439,7 +439,7 @@ function App() {
         <footer className="page-footer"><span>Made for the everyday bits.</span><span className="footer-rule" /><span>YOUR MONEY, YOUR MOMENT</span></footer>
       </div>
 
-      <nav style={{position:"fixed",bottom:0,left:0,right:0,zIndex:50,display:"flex",justifyContent:"space-around",padding:"10px",background:"#fff"}} className="bottom-nav" aria-label="Main navigation" data-testid="nav-bottom">
+      <nav style={{position:"fixed",bottom:64,left:0,right:0,zIndex:50,display:"flex",justifyContent:"space-around",padding:"10px",background:"#fff"}} className="bottom-nav" aria-label="Main navigation" data-testid="nav-bottom">
         <button type="button" className={tab === 'today' ? 'active' : ''} onClick={() => setTab('today')} aria-current={tab === 'today' ? 'page' : undefined} data-testid="nav-today"><span className="nav-mark" /><span>Today</span></button>
         <button type="button" className={tab === 'grow' ? 'active' : ''} onClick={() => setTab('grow')} aria-current={tab === 'grow' ? 'page' : undefined} data-testid="nav-grow-rands"><TrendingUp size={16} /><span>{currencyCode === "ZAR" ? "Grow Rands" : "Grow Money"}</span></button>
       </nav>
